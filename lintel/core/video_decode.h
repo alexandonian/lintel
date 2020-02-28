@@ -1,12 +1,12 @@
 /**
  * Copyright 2018 Brendan Duke.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,17 +29,17 @@ extern "C" {
 #ifdef __cplusplus
 };
 #endif
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 #define VID_DECODE_FFMPEG_ERR (-2)
 #define VID_DECODE_EOF (-1)
 #define VID_DECODE_SUCCESS 0
 
 struct buffer_data {
-        const char *ptr;
-        int32_t offset_bytes;
-        int32_t total_size_bytes;
+    const char *ptr;
+    int32_t offset_bytes;
+    int32_t total_size_bytes;
 };
 
 /**
@@ -53,12 +53,12 @@ struct buffer_data {
  * @nb_frames: (Possibly approximate) number of frames in the video.
  */
 struct video_stream_context {
-        AVFrame *frame;
-        AVCodecContext *codec_context;
-        AVFormatContext *format_context;
-        int32_t video_stream_index;
-        int64_t duration;
-        int64_t nb_frames;
+    AVFrame *frame;
+    AVCodecContext *codec_context;
+    AVFormatContext *format_context;
+    int32_t video_stream_index;
+    int64_t duration;
+    int64_t nb_frames;
 };
 
 /**
@@ -174,10 +174,9 @@ skip_past_timestamp(struct video_stream_context *vid_ctx, int64_t timestamp);
  * @param vid_ctx Context needed to decode frames from the video stream.
  * @param num_requested_frames Number of frames requested to fill into `dest`.
  */
-void
-decode_video_to_out_buffer(uint8_t *dest,
-                           struct video_stream_context *vid_ctx,
-                           int32_t num_requested_frames);
+void decode_video_to_out_buffer(uint8_t *dest,
+                                struct video_stream_context *vid_ctx,
+                                int32_t num_requested_frames);
 
 /**
  * decode_video_from_frame_nums() - Decodes video from exactly the frames
@@ -198,11 +197,10 @@ decode_video_to_out_buffer(uint8_t *dest,
  * stream, then the initial frames are looped repeatedly until the end of the
  * buffer.
  */
-void
-decode_video_from_frame_nums(uint8_t *dest,
-                             struct video_stream_context *vid_ctx,
-                             int32_t num_requested_frames,
-                             const int32_t *frame_numbers,
-                             bool should_seek);
+void decode_video_from_frame_nums(uint8_t *dest,
+                                  struct video_stream_context *vid_ctx,
+                                  int32_t num_requested_frames,
+                                  const int32_t *frame_numbers,
+                                  bool should_seek);
 
-#endif // _VIDEO_DECODE_H_
+#endif  // _VIDEO_DECODE_H_
